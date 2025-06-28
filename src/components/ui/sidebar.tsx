@@ -12,9 +12,11 @@ export function Sidebar() {
     { name: "Dashboard", href: "/Dashboard" },
     { name: "Profile", href: "/profile" },
     { name: "Settings", href: "/settings" },
-    { name: "login or signup", href: "/auth/login" },
+    { name: "login or signup", href: "/auth/login" }, 
     { name: "Manage Employees", href: "/Manage_employees" },
     { name: "Manage Cameras", href: "/Manage_Cameras" },
+    { name: "Manage Unknown Faces", href: "/Manage_Unknowns" },
+    { name: "Monthly Attendance", href: "/Monthly" },
   ]
 
   const content = (

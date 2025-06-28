@@ -27,6 +27,7 @@ export default function ManagerDashboard() {
   return (
 
     <div className="p-6 grid gap-6">
+      <h1 className="text-2xl font-bold mb-4">Manager Dashboard</h1>
       {/* Stat Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card>

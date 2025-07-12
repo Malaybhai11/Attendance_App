@@ -9,14 +9,14 @@ export function Sidebar() {
   const isDesktop = useMediaQuery("(min-width: 768px)")
 
   const navItems = [
-    { name: "Dashboard", href: "/Dashboard" },
+    { name: "Dashboard", href: "/dashboard" },
     { name: "Profile", href: "/profile" },
     { name: "Settings", href: "/settings" },
     { name: "login or signup", href: "/auth/login" }, 
     { name: "Manage Employees", href: "/Manage_employees" },
     { name: "Manage Cameras", href: "/Manage_Cameras" },
     { name: "Manage Unknown Faces", href: "/Manage_Unknowns" },
-    { name: "Monthly Attendance", href: "/Monthly" },
+    { name: "Employee's Performance", href: "/individual_employee" },
   ]
 
   const content = (

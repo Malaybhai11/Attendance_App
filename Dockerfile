@@ -1,22 +1,24 @@
-# Use official Node.js base image (with OpenSSL 3 & full Web API support)
 FROM node:20-slim
 
 # Set working directory
 WORKDIR /app
 
-# Copy all files
+# Install OpenSSL (needed for Prisma)
+RUN apt-get update && apt-get install -y openssl libssl-dev
+
+# Copy project files
 COPY . .
 
 # Install dependencies
 RUN npm install
 
-# Generate Prisma Client
+# Generate Prisma client (add correct target)
 RUN npx prisma generate
 
 # Build the Next.js app
 RUN npm run build
 
-# Expose the Next.js default port
+# Expose the port Next.js runs on
 EXPOSE 3000
 
 # Start the app

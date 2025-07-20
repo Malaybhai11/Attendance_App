@@ -1,23 +1,23 @@
-# Use official Bun image
-FROM oven/bun:1.1.13
+# Use official Node.js base image (with OpenSSL 3 & full Web API support)
+FROM node:20-slim
 
 # Set working directory
 WORKDIR /app
 
-# Copy project files
+# Copy all files
 COPY . .
 
 # Install dependencies
-RUN bun install
+RUN npm install
 
-# Generate Prisma Client for your platform
-RUN bunx prisma generate
+# Generate Prisma Client
+RUN npx prisma generate
 
-# Build Next.js
-RUN bun run build
+# Build the Next.js app
+RUN npm run build
 
-# Expose Next.js default port
+# Expose the Next.js default port
 EXPOSE 3000
 
 # Start the app
-CMD ["bun", "run", "start"]
+CMD ["npm", "run", "start"]

@@ -7,6 +7,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/lib/auth"
+import { redirect } from "next/navigation"
+import { get } from "http"
 
 interface Employee {
   id: string
@@ -34,7 +38,14 @@ const employees: Employee[] = [
 ]
 
 export default function ManageEmployees() {
+
+  const session = getServerSession(authOptions)
+
+  if (!session){
+    redirect("/auth/login")
+  }
   const [selected, setSelected] = useState<Employee | null>(null)
+
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">

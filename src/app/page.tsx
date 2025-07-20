@@ -1,8 +1,22 @@
+"use client"
+
+import { UseSessionOptions } from "next-auth/react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableHeader, TableRow, TableCell, TableBody } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/lib/auth"
+import { redirect } from "next/navigation"
+
 
 export default function ManagerDashboard() {
+  
+  const session = getServerSession(authOptions)
+
+  if (!session){
+    redirect("/auth/login")
+  }
+  
   const stats = {
     total: 150,
     present: 124,

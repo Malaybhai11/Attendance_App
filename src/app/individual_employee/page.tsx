@@ -8,6 +8,9 @@ import { Input } from "@/components/ui/input"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button"
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/lib/auth"
+import { redirect } from "next/navigation"
 
 const employees = [
   { id: "emp001", name: "Ramesh Gupta", image: "/faces/male.jpg", department: "Security" },
@@ -37,6 +40,11 @@ const dummyData: Record<string, PerformanceData> = {
 export default function EmployeePerformance() {
   const [selected, setSelected] = useState(employees[0])
   const data = dummyData[selected.id]
+  const session = getServerSession(authOptions)
+
+  if (!session){
+    redirect("/auth/login")
+  }
 
   return (
     <div className="p-6 space-y-6">

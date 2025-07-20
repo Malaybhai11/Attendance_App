@@ -7,6 +7,9 @@ import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/lib/auth"
+import { redirect } from "next/navigation"
 
 
 interface Camera {
@@ -23,6 +26,12 @@ const initialCameras: Camera[] = [
 
 export default function ManageCamerasPage() {
   const [cameras, setCameras] = useState(initialCameras)
+
+  const session = getServerSession(authOptions)
+
+  if (!session){
+    redirect("/auth/login")
+  }
 
   return (
     <div className="p-6 space-y-6">

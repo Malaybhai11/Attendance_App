@@ -1,5 +1,14 @@
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/lib/auth"
+import { redirect } from "next/navigation"
+
 export default function Manage_Unknowns(){
 
+    const session = getServerSession(authOptions)
+    
+    if(!session){
+        redirect("/auth/login")
+    }
 
     return(
         <div className="flex flex-col items-center justify-center h-screen">

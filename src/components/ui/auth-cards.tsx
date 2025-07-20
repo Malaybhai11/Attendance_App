@@ -52,7 +52,7 @@ export function AuthCard({ type = "login" }: { type?: "login" | "signup" }) {
         return
       }
 
-      router.push("/dashboard")
+      router.push("/")
     }
 
     setLoading(false)

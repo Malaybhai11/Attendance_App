@@ -1,13 +1,15 @@
 [phases.setup]
-nixPkgs = ['bun']
+nixPkgs = ['bun', 'openssl']
 aptPkgs = ['build-essential', 'openssl', 'libssl-dev']
 
 [phases.install]
-cmds = ["bun install"]
+cmds = [
+  "bun install"
+]
 
 [phases.build]
 cmds = [
-  "bunx prisma generate",  
+  "bunx prisma generate",
   "bun run build"
 ]
 

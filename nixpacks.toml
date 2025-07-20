@@ -1,6 +1,6 @@
 [phases.setup]
-nixPkgs = ['bun', 'openssl_3']
-aptPkgs = ['build-essential', 'openssl', 'libssl-dev']
+nixPkgs = ['openssl_3', 'pkg-config', 'glibc']
+aptPkgs = ['libssl-dev']
 
 [phases.install]
 cmds = [

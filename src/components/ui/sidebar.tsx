@@ -9,7 +9,7 @@ export function Sidebar() {
   const isDesktop = useMediaQuery("(min-width: 768px)")
 
   const navItems = [
-    { name: "Dashboard", href: "/dashboard" },
+    { name: "Dashboard", href: "/" },
     { name: "Profile", href: "/profile" },
     { name: "Settings", href: "/settings" },
     { name: "login or signup", href: "/auth/login" }, 

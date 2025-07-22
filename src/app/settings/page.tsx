@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { LogoutButton } from "@/components/LogoutButton";
 
 export default function SettingsPage(){
     return (
@@ -18,6 +19,9 @@ export default function SettingsPage(){
         
         <Button>login</Button>
         <Button>Signup</Button>
+        <LogoutButton />
+        
+        {/* Example settings list */}
 
         </div>
 

@@ -1,28 +1,29 @@
-"use client"
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import {
+  Card, CardContent, CardHeader, CardTitle,
+} from "@/components/ui/card";
+import {
+  Table, TableHeader, TableRow, TableCell, TableBody,
+} from "@/components/ui/table";
 
-import { UseSessionOptions } from "next-auth/react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Table, TableHeader, TableRow, TableCell, TableBody } from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
-import { getServerSession } from "next-auth"
-import { authOptions } from "@/lib/auth"
-import { redirect } from "next/navigation"
-
-
-export default function ManagerDashboard() {
-  
-  const session = getServerSession(authOptions)
-
-  if (!session){
-    redirect("/auth/login")
+// 1. NO "use client" – this is a server component!
+// 2. async function (so we can await session fetch)
+export default async function ManagerDashboard() {
+  const session = await getServerSession(authOptions);
+  console.log("Session:", session);
+  // 3. Lock page for unauthenticated users
+  if (!session) {
+    redirect("/auth/login");
   }
-  
+
   const stats = {
     total: 150,
     present: 124,
     absent: 26,
     late: 9,
-  }
+  };
 
   type Status = "Present" | "Late" | "Absent";
 
@@ -30,16 +31,15 @@ export default function ManagerDashboard() {
     { name: "Ramesh Gupta", time: "09:01 AM", status: "Present" },
     { name: "Ravi Patel", time: "10:15 AM", status: "Late" },
     { name: "Arjun Verma", time: "-", status: "Absent" },
-  ]
+  ];
 
   const statusColor: Record<Status, string> = {
     Present: "bg-green-100 text-green-700",
     Late: "bg-yellow-100 text-yellow-700",
     Absent: "bg-red-100 text-red-700",
-  }
+  };
 
   return (
-
     <div className="p-6 grid gap-6">
       {/* Stat Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -83,10 +83,10 @@ export default function ManagerDashboard() {
                   </span>
                 </TableCell>
               </TableRow>
-            ))} 
+            ))}
           </TableBody>
         </Table>
       </div>
     </div>
-  )
+  );
 }
